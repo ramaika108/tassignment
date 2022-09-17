@@ -1,0 +1,5 @@
+1) All components will re-render when 'count' is updated. Difficult to maintain and modify this code.
+2) Use Context.
+   Declare state on the level, where is is actually needed (move 'extraA' and 'extraB' to 'LayerA' and 'LayrerB').
+3) The benefit is, no need to pass props through components where they are not needed. The drawback is, it will make the component more difficult to reuse.
+   The benefit is, less props drilling. The drawback, Parent component will not be able to modify 'extraA' and 'extraB'.

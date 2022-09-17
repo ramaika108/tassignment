@@ -1,0 +1,2 @@
+1) Declare the 'open' and 'toggleOpen' in the Parent component.
+2) Benefit is, we get what we want. Drawback is, we add extra logic to the Parent component. Also the Child component becomes less independent.

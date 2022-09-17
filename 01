@@ -1,0 +1,56 @@
+type Character = {
+id: string
+    name:string
+    status: string
+    species: string
+    type: string
+    gender: string
+    origin: {
+      name: string
+      url: string
+    }
+    location: {
+      name: string
+      url: string
+    },
+    image: string
+    episode: string[]
+    url: string
+    created: string
+}
+
+type Episode = {
+    id: number
+    name: string
+    air_date: string
+    episode: string
+    characters: string[]|Character[]
+    url: string
+    created: string
+}
+
+const test = async() => {
+    let episodes:Episode[] = [];
+    let linkToNextPage = 'https://rickandmortyapi.com/api/episode'
+
+    while (linkToNextPage !== null) { //get episodes from all pages
+        let response = await fetch(linkToNextPage)
+        let data = await response.json()
+        episodes = episodes.concat(data.results)
+        linkToNextPage = data.info.next
+    }
+    
+    for (let n=0; n<episodes.length; n++) {
+        let characterIds:string = '';
+        for (let character of episodes[n].characters) { //get all id's of required characters
+            if (typeof character === 'string') {
+                characterIds += character.slice(character.lastIndexOf('/') + 1, character.length) + ',';
+            }
+        }
+        let response = await fetch('https://rickandmortyapi.com/api/character/' + characterIds);  //get all characters objects with just one call to the API
+        let data = await response.json()
+        episodes[n].characters = data;
+    }
+    console.log(episodes)
+}
+test();

@@ -1,0 +1,13 @@
+export function counter(initialValue = 0) {
+  let value = initialValue
+
+  const current:Function = () => {
+    return value
+  }
+
+  const increment:Function = () => {
+    value++
+  }
+
+  return [current, increment]
+}

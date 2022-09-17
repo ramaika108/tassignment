@@ -1,0 +1,3 @@
+1) The imports section is not there
+2) Change the 'li' key to book.id in stead of using 'i', using 'i' as the key in not recommended by react's official documentation.
+3) Not really, the code will not work, and even if it did, it is not in compliance with react's best practices.
